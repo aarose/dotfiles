@@ -19,7 +19,7 @@ call vundle#end()            " required
 filetype plugin indent on    " required
 
 
-" Open NERDTree with Ctrl-n
+" Toggle NERDTree with Ctrl-a
 map <C-a> :NERDTreeToggle<CR>
 
 
