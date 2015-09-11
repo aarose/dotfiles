@@ -12,6 +12,7 @@ Plugin 'scrooloose/syntastic'  " linting engine
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/nerdtree'  " filesystem tree explorer
 Plugin 'Valloric/YouCompleteMe'  " fuzzy-search code completion engine
+Plugin 'groenewege/vim-less'  " syntax highlighting for LESS
 
 
 " All of your Plugins must be added before the following line
