@@ -1,6 +1,13 @@
 export WORKON_HOME=$HOME/Development/virtualenvs
 export PROJECT_HOME=$HOME/Development
+export TERM=xterm-256color
 source /usr/local/bin/virtualenvwrapper.sh
+
+
+# Aliases
+alias python=python3
+alias ls="ls -F --color"  # turn on ls colours 
+
 
 # Start SSH agent and add key
 SSH_ENV="$HOME/.ssh/environment"
@@ -25,14 +32,10 @@ else
     start_agent;
 fi
 
-# Colors
-export TERM=xterm-256color
-
-# turn on ls colours
-alias ls="ls -F --color"
 
 
-# -------------- GIT COLOURED OUTPUT FROM http://www.terminally-incoherent.com/blog/2013/01/14/whats-in-your-bash-prompt/
+# -------------- GIT COLOURED OUTPUT MODIFIED FROM ---------------------------
+# http://www.terminally-incoherent.com/blog/2013/01/14/whats-in-your-bash-prompt/
 ##-ANSI-COLOR-CODES-##
 Color_Off="\[\033[0m\]"
 ###-Regular-###
@@ -44,10 +47,10 @@ Yellow="\[\033[0;33m\]"
 BRed="\[\033[1;31m\]"
 BPurple="\[\033[1;35m\]"
 
-# Display the branch name of git repository
-# Green -> clean
-# purple -> untracked files
-# red -> files to commit
+
+# For when using chromeOS + crouton
+file="/etc/debian_chroot"
+codename=$(cat "$file")
 
 # set up command prompt
 function __prompt_command()
@@ -56,12 +59,18 @@ function __prompt_command()
     EXIT="$?"
     PS1=""
  
-    if [ $EXIT -eq 0 ]; then PS1+="\[$Green\][\!]\[$Color_Off\] "; else PS1+="\[$Red\][\!]\[$Color_Off\] "; fi
+    # if [ $EXIT -eq 0 ]; then PS1+="\[$Green\][\!]\[$Color_Off\] "; else PS1+="\[$Red\][\!]\[$Color_Off\] "; fi
+    # codename located in /etc/crouton/name but also from using lsb_release -c
+    PS1+="\[$Green\][$codename]\[$Color_Off\] "
  
     # basic information (user@host:path)
     PS1+="\[$BRed\]\u\[$Color_Off\]@\[$BRed\]\h\[$Color_Off\]:\[$BPurple\]\w\[$Color_Off\] "
  
     # check if inside git repo
+    # Display the branch name of git repository
+    # Green -> clean
+    # purple -> untracked files
+    # red -> files to commit
     local git_status="`git status -unormal 2>&1`"    
     if ! [[ "$git_status" =~ Not\ a\ git\ repo ]]; then
         # parse the porcelain output of git status
