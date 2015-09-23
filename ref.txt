@@ -1,0 +1,2 @@
+# Makes script executable
+chmod u+x terminal-theme.sh
