@@ -10,6 +10,7 @@ git config --global user.email "$EMAIL"
 git config --global user.name "$NAME"
 # Pause here to add public key to github, to pull down dotfiles repo
 
+mkdir scripts
 mkdir Development
 cd Development
 git clone git@github.com:aarose/dotfiles.git
