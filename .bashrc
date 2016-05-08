@@ -43,6 +43,8 @@ Red="\[\033[0;31m\]"
 Green="\[\033[0;32m\]"
 Purple="\[\033[0;35\]"
 Yellow="\[\033[0;33m\]"
+LightCyan="\[\033[1;36m\]"
+Cyan="\[\033[0;36m\]"
 ####-Bold-####
 BRed="\[\033[1;31m\]"
 BPurple="\[\033[1;35m\]"
@@ -77,7 +79,7 @@ function __prompt_command()
         if [[ "$git_status" =~ nothing\ to\ commit ]]; then
             local Color_On=$Green
         elif [[ "$git_status" =~ nothing\ added\ to\ commit\ but\ untracked\ files\ present ]]; then
-            local Color_On=$Purple
+            local Color_On=$Cyan
         else
             local Color_On=$Red
         fi
@@ -97,8 +99,15 @@ function __prompt_command()
     if [[ $VIRTUAL_ENV ]]; then
         PS1+="\[$Yellow\](`basename \"$VIRTUAL_ENV\"`)\[$Color_Off\] "
     fi
+
+    # If there's an active nodeenv, show it in brackets
+    if [[ $NODE_VIRTUAL_ENV ]]; then
+        PS1+="\[$Cyan\](`basename \"$NODE_VIRTUAL_ENV\"`)\[$Color_Off\] "
+    fi
     
     # prompt $ or # for root
     PS1+="\$ "
 }
 PROMPT_COMMAND=__prompt_command
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
