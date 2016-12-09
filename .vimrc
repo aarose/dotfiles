@@ -13,7 +13,9 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/nerdtree'  " filesystem tree explorer
 Plugin 'Valloric/YouCompleteMe'  " fuzzy-search code completion engine
 Plugin 'groenewege/vim-less'  " syntax highlighting for LESS
-
+Plugin 'vim-scripts/DfrankUtil'  " dependency for Indexer and Vimprj
+Plugin 'vim-scripts/vimprj'  " dependency for Indexer
+Plugin 'vim-scripts/indexer.tar.gz'  " auto ctags generation and management
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -49,3 +51,6 @@ set colorcolumn=80
 " No bells ringing
 set visualbell
 set noerrorbells
+
+" Disable YCM when the vim version isn't MacVim (using /usr/bin/vim)
+" let g:loaded_youcompleteme = 1
