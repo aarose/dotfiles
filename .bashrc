@@ -1,12 +1,17 @@
-export WORKON_HOME=$HOME/Development/virtualenvs
-export PROJECT_HOME=$HOME/Development
+# .bash_profile on macs
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Code
 export TERM=xterm-256color
 source /usr/local/bin/virtualenvwrapper.sh
 
 
 # Aliases
 alias python=python3
-alias ls="ls -F --color"  # turn on ls colours 
+alias ls="ls -F --color"  # turn on ls colours
+#alias ls="ls -Gp"  # used on mac
+alias vim='mvim -v'  # use macvim (necessary for YouCompleteMe)
+alias vi='mvim -v'   # Mac
+alias tag="ctags -R -f ./tags ."  # shortcut for generating tags
 
 
 # Start SSH agent and add key
@@ -71,7 +76,7 @@ function __prompt_command()
     # check if inside git repo
     # Display the branch name of git repository
     # Green -> clean
-    # purple -> untracked files
+    # cyan -> untracked files
     # red -> files to commit
     local git_status="`git status -unormal 2>&1`"    
     if ! [[ "$git_status" =~ Not\ a\ git\ repo ]]; then
